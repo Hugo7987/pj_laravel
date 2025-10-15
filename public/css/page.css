@@ -1,0 +1,112 @@
+/* Reset CSS déjà inclus depuis :
+   https://cdn.githubraw.com/elad2412/the-new-css-reset/main/css/reset.css */
+
+/* --- Grille principale --- */
+@media (min-width: 576px) {
+   .website {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 100vh;
+  }
+}
+
+.header,
+.footer {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+/* --- En-tête --- */
+header {
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 1rem;
+  background: #2c3e50;
+  color: #fff;
+}
+
+/* --- Navigation --- */
+.navigation-list {
+  display: grid;
+  gap: .5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-link {
+  padding: .75rem 1rem;
+  display: block;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #2c3e50;
+  background: #ecf0f1;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navigation-link:hover,
+.navigation-link:focus {
+  background: #3498db;
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  font-size: 1rem;
+  background-color: #fdfdfd;
+  color: #212529;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+main {
+  background: #f8f9fa;
+  padding: 2rem;
+}
+
+main h2 {
+  color: #2c3e50;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+main p, main ul {
+  margin: .75rem 0;
+}
+
+main ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+aside {
+  background: #bdc3c7;
+  padding: 1rem;
+}
+
+footer {
+  background: #2c3e50;
+  color: #fff;
+  padding: 1rem;
+  font-size: .9rem;
+}
+
+.footer {
+  position: static;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+@media (max-width: 575px) {
+  aside {
+    order: -1;
+    text-align: center;
+  }
+
+  .navigation-list {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
