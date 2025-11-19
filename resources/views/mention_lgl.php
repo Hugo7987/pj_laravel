@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mentions Légales</title>
-  <link rel="stylesheet" href="./css/page.css" media="all">
+  <link rel="stylesheet" href="./css/style.css" media="all">
+    <link rel="stylesheet" href="./css/pico.css" media="all">
+
 </head>
 
 <body>
