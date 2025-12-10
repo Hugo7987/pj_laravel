@@ -1,13 +1,13 @@
 @extends('layouts.default')
 
-@section('title', 'Gestion - Concours Robot')
+@section('title', 'Gestion - Concours Robots')
 
 @section('content')
 
 <div class="website">
 
     <!-- En-tête -->
-    <h1>Gestion - Concours Robot</h1>
+    <h1 id="hero-title">Gestion - Concours Robots</h1>
 
     <!-- Contenu principal -->
     <main id="main" role="main" class="main">

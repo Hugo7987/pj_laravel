@@ -12,9 +12,9 @@
               Édition 2025 tenue le <strong>vendredi 5 avril 2025</strong> à Valette (9h–15h).
             </p>
             <nav>
-              <a role="button" class="primary" href="/inscriptions">Inscrire une équipe</a>
-              <a role="button" href="/resultats">Voir les résultats</a>
-              <a role="button" href="/informations">Infos &amp; règlement</a>
+              <a role="button" class="primary" href="/#">Inscrire une équipe</a>
+              <a role="button" href="/#">Voir les résultats</a>
+              <a role="button" href="/#">Infos &amp; règlement</a>
             </nav>
           </div>
 

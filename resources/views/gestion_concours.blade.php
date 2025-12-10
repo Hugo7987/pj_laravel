@@ -4,13 +4,10 @@
 
 @section('content')
 <div class="website">
-
-
-
-
+  <h1 id="hero-title">Gestion des Concours</h1>
   <main id="main" role="main" class="main">
     @if(!empty($concours))
-      <div class="btn_concours" style="display:inline !important;">
+      <div class="btn_concours">
         <a href="{{ route('modification_concours', ['id' => $concours->id]) }}">
           <button type="button">{{ $concours->nom }}</button>
         </a>
@@ -23,7 +20,5 @@
       </div>
     @endif
   </main>
-
-
 </div>
 @endsection
