@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Ajout d'une nouvelle Catégorie</h1>
-    <form action="{{ route('form_categorie.store') }}" method="post">
+    <form action="{{ route('formCategorie.storeCategorie') }}" method="post">
         @csrf
         <fieldset>
 

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB; // ajouté
 class Categorie extends BaseCategorie
 {
 	protected $fillable = [
+		'id',
 		'code',
 		'nom',
 		'commentaire',
@@ -16,7 +17,7 @@ class Categorie extends BaseCategorie
 	];
 
 	public static function aff_categorie($idConcours){
-		return DB::select('select nom, code, commentaire from mcd_categories 
+		return DB::select('select id, nom, code, commentaire from mcd_categories 
 					where id_concours = :idconcours',['idconcours' => $idConcours]);
 	}
 }

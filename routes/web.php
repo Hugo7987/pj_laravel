@@ -5,6 +5,77 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use Livewire\Volt\Volt;
 
+Route::get('/', [PageController::Class, 'home'])->name('home');
+
+// Collèges
+Route::get('/colleges/eleves', [PageController::class, 'eleves'])->name('colleges.eleves');
+Route::get('/colleges/equipe', [PageController::class, 'equipe'])->name('colleges.equipe');
+
+Route::get('/epreuves', [PageController::class, 'epreuves'])->name('epreuves.index');
+
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
+
+require __DIR__.'/auth.php';
+
+Route::get('gestion_concours', function (){
+    return view('gestion_concours');
+});
+Route::get('mention_lgl', function (){
+    return view('mention_lgl');
+});
+Route::get('test', [PageController::class, 'afficherPage'])->name('concour.test');
+
+Route::get('modification_concours', function (){
+    return view('modification_concours');
+});
+Route::get('modification_concours/{id}', [App\Http\Controllers\PageController::class, 'modification'])
+    ->name('modification_concours');
+
+Route::get('form_epreuve', [PageController::class, 'create']);
+
+Route::get('form_categorie', [PageController::class, 'createCategorie']);
+
+// Route::get('form_categorie', function (){
+//     return view('form_categorie');
+// });
+Route::get('modification_concours/{id}', [PageController::class, 'tab_epreuveCategorie'])->name('modification_concours');
+
+Route::put('form_epreuve/{id}', [PageController::class, 'majEpreuve'])->name('majEpreuve');
+
+Route::get('form_epreuve', [PageController::class, 'crea_epreuve'])->name('form_epreuve');
+
+Route::get('modif_epreuve/{id}', [PageController::class, 'modif_epreuve'])->name('modif_epreuve');
+
+Route::get('supp_epreuve/{id}', [PageController::class, 'supp_epreuve'])->name('supp_epreuve');
+
+Route::post('form_epreuve', [PageController::class, 'store'])->name('form_epreuve.store');
+
+// même pour les catégories
+
+Route::put('form_categorie/{id}', [PageController::class, 'majCategorie'])->name('majCategorie');
+
+Route::get('form_categorie', [PageController::class, 'crea_categorie'])->name('form_categorie');
+
+Route::get('modif_categorie/{id}', [PageController::class, 'modif_categorie'])->name('modif_categorie');
+
+Route::get('supp_categorie/{id}', [PageController::class, 'supp_categorie'])->name('supp_categorie');
+
+Route::post('form_categorie', [PageController::class, 'storeCategorie'])->name('formCategorie.storeCategorie');
+
+
+
+
+Route::get('gestion_concours', [PageController::class, 'concours'])->name('gestion_concours');
+
+
+
+
 // Accueil
 Route::get('/', [PageController::class, 'home'])->name('home');
 
@@ -60,20 +131,4 @@ Route::view('profile', 'profile')
 
 require __DIR__.'/auth.php';
 
-// Gestion Concours
-Route::get('gestion_concours', [PageController::class, 'concours'])->name('gestion_concours');
-Route::get('modification_concours/{id}', [PageController::class, 'tab_epreuveCategorie'])->name('modification_concours');
-
-// Épreuves
-Route::get('form_epreuve', [PageController::class, 'crea_epreuve'])->name('form_epreuve');
-Route::post('form_epreuve', [PageController::class, 'store'])->name('form_epreuve.store');
-Route::get('modif_epreuve/{id}', [PageController::class, 'modif_epreuve'])->name('modif_epreuve');
-Route::put('form_epreuve/{id}', [PageController::class, 'majEpreuve'])->name('majEpreuve');
-Route::get('supp_epreuve/{id}', [PageController::class, 'supp_epreuve'])->name('supp_epreuve');
-
-// Catégories
-Route::get('form_categorie', [PageController::class, 'crea_categorie'])->name('form_categorie');
-Route::post('form_categorie', [PageController::class, 'storeCategorie'])->name('form_categorie.store');
-Route::get('modif_categorie/{id}', [PageController::class, 'modif_categorie'])->name('modif_categorie');
-Route::put('form_categorie/{id}', [PageController::class, 'majCategorie'])->name('majCategorie');
-Route::get('supp_categorie/{id}', [PageController::class, 'supp_categorie'])->name('supp_categorie');
+?>

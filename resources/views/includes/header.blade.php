@@ -1,28 +1,15 @@
-<?php
-
-use App\Livewire\Actions\Logout;
-use function Livewire\Volt\action;
-
-$logout = action(function (Logout $logoutAction) {
-    $logoutAction();
-    $this->redirect('/', navigate: true);
-});
-?>
 <nav class="navbar">
     <div class="navbar-brand">
         <a href="{{ route('home') }}">Projet concours-robots</a>
         <button class="burger" id="burger">
             <span></span><span></span><span></span>
         </button>
-       <!-- @if (Auth::check())
-         <span> | {{ Auth::user()->name }}</span>
-       @endif -->
-
     </div>
 
     <ul class="nav-links" id="nav-links">
         <li><a href="{{ route('home') }}">Accueil</a></li>
 
+        {{-- --------------------------- GUEST --------------------------- --}}
         @guest
         <li class="dropdown">
             <a href="#">Collèges ▾</a>
@@ -35,40 +22,36 @@ $logout = action(function (Logout $logoutAction) {
         <li><a href="{{ route('epreuves.index') }}">Épreuves</a></li>
         <li><a href="{{ route('classement.index') }}">Classement</a></li>
 
-        <li class="dropdown">
-            <a href="#">Édition ▾</a>
-            <ul class="dropdown-menu">
-                <li><a href="{{ route('edition.2024') }}">2024</a></li>
-                <li><a href="{{ route('edition.2025') }}">2025</a></li>
-            </ul>
-        </li>
-
         @if (Route::has('login'))
         <li><a href="{{ route('login') }}">Connexion</a></li>
         @endif
         @if (Route::has('register'))
-        <li><a href="{{ route('preinscription') }}">Inscription</a></li>
+        <li><a href="{{ route('register') }}">Inscription</a></li>
         @endif
+
         @else
+        {{-- --------------------------- AUTH --------------------------- --}}
+
         <li class="dropdown">
             <a href="#">Collèges ▾</a>
-            <ul class="dropdown-menu">
+            {{-- <ul class="dropdown-menu">
                 <li><a href="{{ route('colleges.eleves') }}">Élèves</a></li>
+                <li><a href="{{ route('ajout_eleve') }}">Ajout élèves</a></li>
                 <li><a href="{{ route('colleges.equipe') }}">Équipe</a></li>
-            </ul>
+            </ul> --}}
         </li>
 
         <li><a href="{{ route('epreuves.index') }}">Épreuves</a></li>
         <li><a href="{{ route('classement.index') }}">Classement</a></li>
 
-        <li class="dropdown">
-            <a href="#">Édition ▾</a>
-            <ul class="dropdown-menu">
-                <li><a href="{{ route('edition.2024') }}">2024</a></li>
-                <li><a href="{{ route('edition.2025') }}">2025</a></li>
-            </ul>
-        </li>
+        {{-- ------------------ GESTIONNAIRE = ROLE 60 ------------------ --}}
+        @php
+        $role = DB::table('engager')
+        ->where('id_utilisateur', Auth::id())
+        ->value('id_role');
+        @endphp
 
+        @if($role == 60)
         <li><a href="{{ route('saisieNote.index') }}">Saisie Note</a></li>
 
         <li class="dropdown">
@@ -78,6 +61,7 @@ $logout = action(function (Logout $logoutAction) {
                 <li><a href="{{ route('gestion.colleges') }}">Collèges</a></li>
                 <li><a href="{{ route('gestion.abonnement') }}">Abonnement</a></li>
                 <li><a href="{{ route('gestion.role') }}">Rôle</a></li>
+
                 <li class="dropdown">
                     <a href="#">Résultat ▾</a>
                     <ul class="dropdown-menu">
@@ -88,7 +72,16 @@ $logout = action(function (Logout $logoutAction) {
                 </li>
             </ul>
         </li>
+        @endif
 
+        {{-- --------------------------- ADMIN --------------------------- --}}
+        @php
+        $role = DB::table('engager')
+        ->where('id_utilisateur', Auth::id())
+        ->value('id_role');
+        @endphp
+
+        @if($role == 90)
         <li class="dropdown">
             <a href="#">Page Admin ▾</a>
             <ul class="dropdown-menu">
@@ -97,11 +90,13 @@ $logout = action(function (Logout $logoutAction) {
                 <li><a href="{{ route('admin.pays') }}">Pays</a></li>
             </ul>
         </li>
+        @endif
 
-        <!-- Déconnexion -->
+        {{-- Déconnexion --}}
         <li>
-        @livewire('layout.navigation')
+            @livewire('logout-button')
         </li>
+
         @endguest
     </ul>
 </nav>
