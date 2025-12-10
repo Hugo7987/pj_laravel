@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use Livewire\Volt\Volt;
+use App\Http\Middleware\CheckRole;
 
 Route::get('/', [PageController::Class, 'home'])->name('home');
 
@@ -23,34 +24,28 @@ Route::view('profile', 'profile')
 
 require __DIR__.'/auth.php';
 
-Route::get('gestion_concours', function (){
-    return view('gestion_concours');
-});
+Route::get('gestion_concours', [PageController::class, 'concours'])->name('gestion_concours')->middleware(CheckRole::class . ':60,90');
+
+
 Route::get('mention_lgl', function (){
     return view('mention_lgl');
 });
 Route::get('test', [PageController::class, 'afficherPage'])->name('concour.test');
 
-Route::get('modification_concours', function (){
-    return view('modification_concours');
-});
 Route::get('modification_concours/{id}', [App\Http\Controllers\PageController::class, 'modification'])
-    ->name('modification_concours');
+    ->name('modification_concours')->middleware(CheckRole::class . ':60,90');
 
-Route::get('form_epreuve', [PageController::class, 'create']);
+Route::get('form_epreuve', [PageController::class, 'create'])->middleware(CheckRole::class . ':60,90');
 
-Route::get('form_categorie', [PageController::class, 'createCategorie']);
+Route::get('form_categorie', [PageController::class, 'createCategorie'])->middleware(CheckRole::class . ':60,90');
 
-// Route::get('form_categorie', function (){
-//     return view('form_categorie');
-// });
-Route::get('modification_concours/{id}', [PageController::class, 'tab_epreuveCategorie'])->name('modification_concours');
+Route::get('modification_concours/{id}', [PageController::class, 'tab_epreuveCategorie'])->name('modification_concours')->middleware(CheckRole::class . ':60,90');
 
-Route::put('form_epreuve/{id}', [PageController::class, 'majEpreuve'])->name('majEpreuve');
+Route::put('form_epreuve/{id}', [PageController::class, 'majEpreuve'])->name('majEpreuve')->middleware(CheckRole::class . ':60,90');
 
-Route::get('form_epreuve', [PageController::class, 'crea_epreuve'])->name('form_epreuve');
+Route::get('form_epreuve', [PageController::class, 'crea_epreuve'])->name('form_epreuve')->middleware(CheckRole::class . ':60,90');
 
-Route::get('modif_epreuve/{id}', [PageController::class, 'modif_epreuve'])->name('modif_epreuve');
+Route::get('modif_epreuve/{id}', [PageController::class, 'modif_epreuve'])->name('modif_epreuve')->middleware(CheckRole::class . ':60,90');
 
 Route::get('supp_epreuve/{id}', [PageController::class, 'supp_epreuve'])->name('supp_epreuve');
 
@@ -58,20 +53,15 @@ Route::post('form_epreuve', [PageController::class, 'store'])->name('form_epreuv
 
 // même pour les catégories
 
-Route::put('form_categorie/{id}', [PageController::class, 'majCategorie'])->name('majCategorie');
+Route::put('form_categorie/{id}', [PageController::class, 'majCategorie'])->name('majCategorie')->middleware(CheckRole::class . ':60,90');
 
-Route::get('form_categorie', [PageController::class, 'crea_categorie'])->name('form_categorie');
+Route::get('form_categorie', [PageController::class, 'crea_categorie'])->name('form_categorie')->middleware(CheckRole::class . ':60,90');
 
-Route::get('modif_categorie/{id}', [PageController::class, 'modif_categorie'])->name('modif_categorie');
+Route::get('modif_categorie/{id}', [PageController::class, 'modif_categorie'])->name('modif_categorie')->middleware(CheckRole::class . ':60,90');
 
 Route::get('supp_categorie/{id}', [PageController::class, 'supp_categorie'])->name('supp_categorie');
 
 Route::post('form_categorie', [PageController::class, 'storeCategorie'])->name('formCategorie.storeCategorie');
-
-
-
-
-Route::get('gestion_concours', [PageController::class, 'concours'])->name('gestion_concours');
 
 
 
