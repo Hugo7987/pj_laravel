@@ -14,13 +14,13 @@
         <li class="dropdown">
             <a href="#">Collèges ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="{{ route('colleges.eleves') }}">Élèves</a></li>
-                <li><a href="{{ route('colleges.equipe') }}">Équipe</a></li>
+                <li><a href="{{ route('home') }}">Élèves</a></li>
+                <li><a href="{{ route('home') }}">Équipe</a></li>
             </ul>
         </li>
 
-        <li><a href="{{ route('epreuves.index') }}">Épreuves</a></li>
-        <li><a href="{{ route('classement.index') }}">Classement</a></li>
+        <li><a href="{{ route('home') }}">Épreuves</a></li>
+        <li><a href="{{ route('home') }}">Classement</a></li>
 
         @if (Route::has('login'))
         <li><a href="{{ route('login') }}">Connexion</a></li>
@@ -34,15 +34,15 @@
 
         <li class="dropdown">
             <a href="#">Collèges ▾</a>
-            {{-- <ul class="dropdown-menu">
-                <li><a href="{{ route('colleges.eleves') }}">Élèves</a></li>
-                <li><a href="{{ route('ajout_eleve') }}">Ajout élèves</a></li>
-                <li><a href="{{ route('colleges.equipe') }}">Équipe</a></li>
-            </ul> --}}
+            <ul class="dropdown-menu">
+                <li><a href="{{ route('home') }}">Élèves</a></li>
+                <li><a href="{{ route('home') }}">Ajout élèves</a></li>
+                <li><a href="{{ route('home') }}">Équipe</a></li>
+            </ul>
         </li>
 
-        <li><a href="{{ route('epreuves.index') }}">Épreuves</a></li>
-        <li><a href="{{ route('classement.index') }}">Classement</a></li>
+        <li><a href="{{ route('home') }}">Épreuves</a></li>
+        <li><a href="{{ route('home') }}">Classement</a></li>
 
         {{-- ------------------ GESTIONNAIRE = ROLE 60 ------------------ --}}
         @php
@@ -51,23 +51,23 @@
         ->value('id_role');
         @endphp
 
-        @if($role == 60)
-        <li><a href="{{ route('saisieNote.index') }}">Saisie Note</a></li>
+        @if($role >= 60)
+        <li><a href="{{ route('home') }}">Saisie Note</a></li>
 
         <li class="dropdown">
             <a href="#">Page Gestion ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="{{ route('gestion.epreuves') }}">Épreuves</a></li>
-                <li><a href="{{ route('gestion.colleges') }}">Collèges</a></li>
-                <li><a href="{{ route('gestion.abonnement') }}">Abonnement</a></li>
-                <li><a href="{{ route('gestion.role') }}">Rôle</a></li>
+                <li><a href="{{ route('gestion_concours') }}">Concours</a></li>
+                <li><a href="{{ route('home') }}">Collèges</a></li>
+                <li><a href="{{ route('home') }}">Abonnement</a></li>
+                <li><a href="{{ route('home') }}">Rôle</a></li>
 
                 <li class="dropdown">
                     <a href="#">Résultat ▾</a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('gestion.edition') }}">Édition</a></li>
-                        <li><a href="{{ route('gestion.exportation') }}">Exportation</a></li>
-                        <li><a href="{{ route('gestion.modification') }}">Modification</a></li>
+                        <li><a href="{{ route('home') }}">Édition</a></li>
+                        <li><a href="{{ route('home') }}">Exportation</a></li>
+                        <li><a href="{{ route('home') }}">Modification</a></li>
                     </ul>
                 </li>
             </ul>
@@ -85,9 +85,9 @@
         <li class="dropdown">
             <a href="#">Page Admin ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="{{ route('admin.genre') }}">Genre</a></li>
-                <li><a href="{{ route('admin.utilisateurs') }}">Utilisateurs</a></li>
-                <li><a href="{{ route('admin.pays') }}">Pays</a></li>
+                <li><a href="{{ route('home') }}">Genre</a></li>
+                <li><a href="{{ route('home') }}">Utilisateurs</a></li>
+                <li><a href="{{ route('home') }}">Pays</a></li>
             </ul>
         </li>
         @endif
